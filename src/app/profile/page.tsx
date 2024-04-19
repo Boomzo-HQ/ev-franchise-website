@@ -3,9 +3,9 @@
 import ContactUs from "@/components/general/ContactUs";
 import Navbar from "@/components/general/Navbar";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-// import { useAuth } from "@/utils/AuthContext";
 import { cn } from "@/lib/cn";
 import { useAuth } from "@/utils/AuthContext";
+import { BOOKINGTYPE } from "@/utils/bookingType";
 import React from "react";
 
 const KeyPair = ({ point, value }: { point: string; value?: string }) => {
@@ -16,11 +16,6 @@ const KeyPair = ({ point, value }: { point: string; value?: string }) => {
     </div>
   );
 };
-export enum BOOKINGTYPE {
-  processing = "UNDER_PROCESSING",
-  started = "PROCESS_STARTED",
-  completed = "COMPLETED",
-}
 
 const Profile = () => {
   const { user } = useAuth();
