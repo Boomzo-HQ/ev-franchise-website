@@ -1,3 +1,4 @@
+"use client"
 import { API_VERSION, BASE_URL } from "@/utils/APIRoutes";
 import { useAuth } from "@/utils/AuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
