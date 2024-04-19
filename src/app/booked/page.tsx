@@ -5,7 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/utils/AuthContext";
 
-const page = () => {
+const Booked = () => {
   const router = useRouter();
 
   const navigateToProfile = () => {
@@ -39,4 +39,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Booked;
