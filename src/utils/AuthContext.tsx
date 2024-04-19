@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { LOCAL_STORAGE_USER } from "../types/enums";
 import { USER } from "../types/userType";
 import React, {
@@ -37,12 +38,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [firstCheck, setfirstCheck] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     const storedUserData = localStorage.getItem(LOCAL_STORAGE_USER);
     if (storedUserData) {
       setUser(JSON.parse(storedUserData));
-      console.log(" vnvkhjkbhj");
       setIsLoggedIn(true);
+      router.push("/profile");
     }
     setfirstCheck(true);
   }, []);

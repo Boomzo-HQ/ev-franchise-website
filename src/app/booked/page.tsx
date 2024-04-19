@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/general/Navbar";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/utils/AuthContext";
@@ -8,6 +7,7 @@ import ContactUs from "@/components/general/ContactUs";
 import Copyright from "@/components/general/Copyright";
 import CustomButton from "@/components/general/CustomButton";
 import { Button } from "@/components/ui/button";
+import LoggedInNav from "@/components/general/LoggedInNav";
 
 const Booked = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const Booked = () => {
 
   return (
     <div>
-      <Navbar />
+      <LoggedInNav />
       <div className="flex flex-col items-center justify-center py-20 md:py-24 space-y-12 bg-white rounded-lg">
         <p className="text-lg text-gray-700">
           We have received your booking request. We will reach out to you soon.
