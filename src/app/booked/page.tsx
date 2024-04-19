@@ -19,9 +19,9 @@ const Booked = () => {
       <Navbar />
       <div className="flex flex-col items-center justify-center py-20 md:py-24 space-y-12 bg-white rounded-lg">
         <p className="text-lg text-gray-700">
-          We have received your booking request. We'll reach out to you soon.
+          We have received your booking request. We will reach out to you soon.
         </p>
-        <p>Here's your password :- {user?.tempPassword}</p>
+        <p>Here is your password :- {user?.tempPassword}</p>
         <button
           onClick={navigateToProfile}
           className="px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-300"
