@@ -96,12 +96,25 @@ const ResetPasswordForm = () => {
           <div className="grid gap-6">
             <FormField
               control={form.control}
+              name="tempPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Temporary Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="********" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <Input placeholder="********" type="string" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -135,14 +148,14 @@ const ResetPasswordForm = () => {
 
 const ResetPassword = () => {
   return (
-    <div className="lg:p-8 w-screen h-screen flex items-center justify-center">
+    <div className="lg:p-8 px-[8vw] w-screen h-screen flex items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
-            Sign In to your Account
+            Reset Password
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email and password below to signin to your account
+            Enter your temporary password and your new account password
           </p>
         </div>
         <ResetPasswordForm />

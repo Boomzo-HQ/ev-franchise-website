@@ -37,21 +37,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [firstCheck, setfirstCheck] = useState(false);
 
-
   useEffect(() => {
     const storedUserData = localStorage.getItem(LOCAL_STORAGE_USER);
     if (storedUserData) {
       setUser(JSON.parse(storedUserData));
+      console.log(" vnvkhjkbhj");
       setIsLoggedIn(true);
-      setfirstCheck(true);
     }
+    setfirstCheck(true);
   }, []);
 
   const signIn = async (user: USER) => {
     setUser(user);
     setIsLoggedIn(true);
     localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(user));
-  
   };
 
   const signOut = () => {

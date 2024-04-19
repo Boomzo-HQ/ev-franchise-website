@@ -32,7 +32,7 @@ import BookingForm from "./BookingForm";
 export const columns: ColumnDef<FranchiseType>[] = [
   {
     accessorKey: "franchiseName",
-    header: "FranchiseName",
+    header: "Franchise Name",
     size: 200,
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("franchiseName")}</div>
@@ -107,7 +107,7 @@ const FranchiseTable = () => {
   return (
     <section className="bg-[white] flex flex-col gap-y-8 py-16 md:py-20 px-[8vw]">
       <h1
-        className="text-2xl lg:text-3xl font-semibold text-median text-center lg:text-left"
+        className="text-xl lg:text-3xl font-semibold text-median text-center lg:text-left"
         style={{ lineHeight: "1.25" }}
       >
         List of Top 10 EV Charging Station Franchise Cost and Price in India

@@ -4,12 +4,16 @@ import Navbar from "@/components/general/Navbar";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/utils/AuthContext";
+import ContactUs from "@/components/general/ContactUs";
+import Copyright from "@/components/general/Copyright";
+import CustomButton from "@/components/general/CustomButton";
+import { Button } from "@/components/ui/button";
 
 const Booked = () => {
   const router = useRouter();
 
-  const navigateToProfile = () => {
-    router.push("/profile"); // Update the path to your actual profile page's route
+  const navigateToProfile = (link: string) => {
+    router.push(link); // Update the path to your actual profile page's route
   };
 
   const { user } = useAuth();
@@ -22,19 +26,21 @@ const Booked = () => {
           We have received your booking request. We will reach out to you soon.
         </p>
         <p>Here is your password :- {user?.tempPassword}</p>
-        <button
-          onClick={navigateToProfile}
-          className="px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-300"
-        >
-          Reset Password
-        </button>
-        <button
-          onClick={navigateToProfile}
-          className="px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-300"
-        >
-          View Profile
-        </button>
+        <div className="flex flex-row items-center gap-x-12">
+          <CustomButton
+            onClick={() => navigateToProfile("/reset-password")}
+            text="Reset password"
+          />
+          <Button
+            onClick={() => navigateToProfile("/profile")}
+            className="text-[#00a86b] text-xs md:text-base px-6 py-4 md:px-10 md:py-7 border-[1px] border-[#00a86b]  rounded-3xl"
+          >
+            View Profile
+          </Button>
+        </div>
       </div>
+      <ContactUs />
+      <Copyright />
     </div>
   );
 };

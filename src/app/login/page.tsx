@@ -18,6 +18,7 @@ import { API_VERSION, BASE_URL } from "@/utils/APIRoutes";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -79,7 +80,6 @@ const UserAuthForm = () => {
       .catch((data) => {
         console.log(data.response);
         setIsLoading(false);
-        // toast.error(errMsg, toastOptions);
       });
   }
 
@@ -129,7 +129,7 @@ const UserAuthForm = () => {
 
 const Login = () => {
   return (
-    <div className="lg:p-8 w-screen h-screen flex items-center justify-center">
+    <div className="lg:p-8 px-[8vw] w-screen h-screen flex items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">

@@ -23,11 +23,15 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className="px-[8vw] py-20 md:py-24 flex flex-col gap-y-12">
-        <div className="flex gap-4 items-center">
-          <h3 className="text-3xl">Your Booking Details:-</h3>
+      <div className="relative px-[8vw] py-20 md:py-24 flex flex-col gap-y-12">
+        <div className="absolute -z-10 inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#0077b512_1px,transparent_1px),linear-gradient(to_bottom,#0077b512_1px,transparent_1px)] bg-[size:42px_42px]"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[rgba(0,168,107,0.5)] to-transparent"></div>
+
+        <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
+          <h3 className="text-lg md:text-3xl">Your Booking Details:-</h3>
           <h3
-            className={cn("text-3xl font-semibold", {
+            className={cn("text-lg md:text-3xl font-semibold", {
               "text-red-600": user?.status == BOOKINGTYPE.processing,
               "text-yellow-600": user?.status == BOOKINGTYPE.started,
               "text-green-600": user?.status == BOOKINGTYPE.completed,
@@ -44,7 +48,25 @@ const Profile = () => {
           <KeyPair point="Phone Number" value={user?.phone} />
           <KeyPair point="Onboarding As" value={user?.onBoardingAs} />
           <KeyPair point="Location" value={`${user?.city}, ${user?.state}`} />
-          <KeyPair point="Temp password" value={user?.tempPassword} />
+          <div className="flex flex-col gap-2">
+            <h3 className="font-semibold">Location Image :-</h3>
+            {user?.locationImage ? (
+              <Avatar className="w-36 h-36">
+                <AvatarImage src={user?.locationImage} alt="@shadcn" />
+              </Avatar>
+            ) : (
+              "Image hasnt been uploaded yet"
+            )}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 md:hidden">
+          <KeyPair point="Name" value={user?.name} />
+          <KeyPair point="Email" value={user?.email} />
+          <KeyPair point="Phone Number" value={user?.phone} />
+          <KeyPair point="Location" value={`${user?.city}, ${user?.state}`} />
+          <KeyPair point="Franchise Requested" value={user?.franchiseName} />
+          <KeyPair point="Investment Range" value={user?.investmentRange} />
+          <KeyPair point="Onboarding As" value={user?.onBoardingAs} />
           <div className="flex flex-col gap-2">
             <h3 className="font-semibold">Location Image :-</h3>
             {user?.locationImage ? (
