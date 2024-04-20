@@ -151,10 +151,12 @@ const BookingForm = ({ row }: formProps) => {
               Book {row.getValue("franchiseName")}
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px] h-[90vh] md:h-[80vh] md:w-[60vw] lg:w-[60vw] lg:max-w-[60vw] bg-white overflow-y-auto">
+          <DialogContent className="sm:max-w-[425px] h-[90vh] md:h-[80vh] md:w-[60vw] lg:w-[60vw] lg:max-w-[60vw] border-none bg-[#0077b5] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>Book {row.getValue("franchiseName")}</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="text-white">
+                Book {row.getValue("franchiseName")}
+              </DialogTitle>
+              <DialogDescription className="text-white">
                 Fill in the details and our team will reach out to you shortly!
               </DialogDescription>
             </DialogHeader>
@@ -168,7 +170,7 @@ const BookingForm = ({ row }: formProps) => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel className="text-white">Name</FormLabel>
                       <FormControl>
                         <Input placeholder="John Doe" {...field} />
                       </FormControl>
@@ -181,7 +183,7 @@ const BookingForm = ({ row }: formProps) => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="text-white">Email</FormLabel>
                       <FormControl>
                         <Input placeholder="example@gmail.com" {...field} />
                       </FormControl>
@@ -194,7 +196,7 @@ const BookingForm = ({ row }: formProps) => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
+                      <FormLabel className="text-white">Phone Number</FormLabel>
                       <FormControl>
                         <Input placeholder="example@gmail.com" {...field} />
                       </FormControl>
@@ -207,7 +209,7 @@ const BookingForm = ({ row }: formProps) => {
                   name="city"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>City</FormLabel>
+                      <FormLabel className="text-white">City</FormLabel>
                       <FormControl>
                         <Input placeholder="Enter your city" {...field} />
                       </FormControl>
@@ -220,7 +222,7 @@ const BookingForm = ({ row }: formProps) => {
                   name="state"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>State</FormLabel>
+                      <FormLabel className="text-white">State</FormLabel>
                       <FormControl>
                         <Input placeholder="Enter your state" {...field} />
                       </FormControl>
@@ -233,11 +235,16 @@ const BookingForm = ({ row }: formProps) => {
                   name="investmentRange"
                   render={({ field }) => (
                     <FormItem className="flex flex-col gap-[9px]">
-                      <FormLabel>Investment Range</FormLabel>
+                      <FormLabel className="text-white">
+                        Investment Range
+                      </FormLabel>
                       <FormControl>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="outline">
+                            <Button
+                              className="bg-white text-black"
+                              variant="outline"
+                            >
                               {investmentRange
                                 ? investmentRange
                                 : "Select Investment Range"}
@@ -270,11 +277,16 @@ const BookingForm = ({ row }: formProps) => {
                   name="onBoardingAs"
                   render={({ field }) => (
                     <FormItem className="flex flex-col gap-[9px]">
-                      <FormLabel>Onboarding As</FormLabel>
+                      <FormLabel className="text-white">
+                        Onboarding As
+                      </FormLabel>
                       <FormControl>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="outline">
+                            <Button
+                              className="bg-white text-black"
+                              variant="outline"
+                            >
                               {position ? position : "Select Onboarding As"}
                             </Button>
                           </DropdownMenuTrigger>
@@ -302,7 +314,9 @@ const BookingForm = ({ row }: formProps) => {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Message (optional)</FormLabel>
+                      <FormLabel className="text-white">
+                        Message (optional)
+                      </FormLabel>
                       <FormControl>
                         <Textarea
                           rows={3}
