@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import CustomButton from "./CustomButton";
+import axios from "axios";
+import { API_VERSION, BASE_URL } from "@/utils/APIRoutes";
+import { toast } from "../ui/use-toast";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -10,16 +13,33 @@ const ContactUs = () => {
     message: "",
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(formData);
-  };
-
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(formData);
+    await axios
+      .post(`${BASE_URL}${API_VERSION}/contact`, {
+        name: formData.firstName + " " + formData.lastName,
+        email: formData.email,
+        message: formData.message,
+      })
+      .then(({ data }) => {
+        toast({
+          title: "We'll reach out to you soon",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Uh oh! Something went wrong.",
+        });
+      });
+  };
+
   return (
     <section
       id="Contact"

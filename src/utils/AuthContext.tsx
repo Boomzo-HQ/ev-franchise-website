@@ -45,7 +45,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (storedUserData) {
       setUser(JSON.parse(storedUserData));
       setIsLoggedIn(true);
-      // router.push("/profile");
+      router.push("/profile");
     }
     setfirstCheck(true);
   }, []);
