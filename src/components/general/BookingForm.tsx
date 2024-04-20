@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Row } from "@tanstack/react-table";
-import { FranchiseType } from "@/types/frnachiseData";
+import { FRANCHISE_DATA, FranchiseType } from "@/types/frnachiseData";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -107,12 +107,48 @@ const BookingForm = ({ row }: formProps) => {
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
+  const [selectedState, setselectedState] = React.useState("");
+  const [selectedFranchise, setselectedFranchise] = React.useState<string>(
+    row.getValue("franchiseName")
+  );
+
+  const statesOfIndia = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+  ];
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     console.log(position);
     console.log(investmentRange);
 
-    if (!investmentRange && !position) return;
+    if (!investmentRange && !position && !selectedState) return;
 
     setIsLoading(true);
 
@@ -122,7 +158,7 @@ const BookingForm = ({ row }: formProps) => {
         email: values.email,
         phone: values.phone,
         city: values.city,
-        state: values.state,
+        state: selectedState,
         franchiseName: values.franchiseName,
         investmentRange: investmentRange,
         onBoardingAs: position,
@@ -172,7 +208,7 @@ const BookingForm = ({ row }: formProps) => {
                     <FormItem>
                       <FormLabel className="text-white">Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -185,7 +221,7 @@ const BookingForm = ({ row }: formProps) => {
                     <FormItem>
                       <FormLabel className="text-white">Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="example@gmail.com" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -198,7 +234,7 @@ const BookingForm = ({ row }: formProps) => {
                     <FormItem>
                       <FormLabel className="text-white">Phone Number</FormLabel>
                       <FormControl>
-                        <Input placeholder="example@gmail.com" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -211,7 +247,7 @@ const BookingForm = ({ row }: formProps) => {
                     <FormItem>
                       <FormLabel className="text-white">City</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter your city" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -221,10 +257,78 @@ const BookingForm = ({ row }: formProps) => {
                   control={form.control}
                   name="state"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="flex flex-col gap-[9px]">
                       <FormLabel className="text-white">State</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter your state" {...field} />
+                        {/* <Input placeholder="Enter your state" {...field} /> */}
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              className="bg-white text-black"
+                              variant="outline"
+                            >
+                              {selectedState ? selectedState : "Select State"}
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent className="w-full h-[40vh] overflow-y-auto bg-white">
+                            <DropdownMenuRadioGroup
+                              value={selectedState}
+                              onValueChange={setselectedState}
+                            >
+                              {statesOfIndia.map((state, idx) => {
+                                return (
+                                  <DropdownMenuRadioItem
+                                    key={idx}
+                                    value={state}
+                                  >
+                                    {state}
+                                  </DropdownMenuRadioItem>
+                                );
+                              })}
+                            </DropdownMenuRadioGroup>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="franchiseName"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col gap-[9px]">
+                      <FormLabel className="text-white">
+                        Franchise Name
+                      </FormLabel>
+                      <FormControl>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              className="bg-white text-black"
+                              variant="outline"
+                            >
+                              {selectedFranchise}
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent className="w-full h-[40vh] overflow-y-auto bg-white">
+                            <DropdownMenuRadioGroup
+                              value={selectedFranchise}
+                              onValueChange={setselectedFranchise}
+                            >
+                              {FRANCHISE_DATA.map((franchise, idx) => {
+                                return (
+                                  <DropdownMenuRadioItem
+                                    key={idx}
+                                    value={franchise.franchiseName}
+                                  >
+                                    {franchise.franchiseName}
+                                  </DropdownMenuRadioItem>
+                                );
+                              })}
+                            </DropdownMenuRadioGroup>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -318,11 +422,7 @@ const BookingForm = ({ row }: formProps) => {
                         Message (optional)
                       </FormLabel>
                       <FormControl>
-                        <Textarea
-                          rows={3}
-                          placeholder="Any message for us"
-                          {...field}
-                        />
+                        <Textarea rows={3} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

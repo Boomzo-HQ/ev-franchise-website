@@ -57,7 +57,6 @@ const ContactUs = () => {
           <span>1670, Rai Industrial Estate, Sector 38, Sonipat, Haryana</span>
           <span>info@evchargingstationindia.com</span>
           <span>support@evchargingstationindia.com</span>
-          <span>Tel: 123-456-7890</span>
         </div>
       </div>
       <div className="z-50 w-full px-10 pb-20 md:w-1/2 mt-6 md:mt-0 md:p-24 flex-grow">

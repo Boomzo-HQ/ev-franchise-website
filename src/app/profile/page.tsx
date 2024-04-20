@@ -51,12 +51,10 @@ const Profile = () => {
           <KeyPair point="Location" value={`${user?.city}, ${user?.state}`} />
           <div className="flex flex-col gap-2">
             <h3 className="font-semibold">Location Image :-</h3>
-            {user?.locationImage ? (
+            {user?.locationImage && (
               <Avatar className="w-36 h-36">
                 <AvatarImage src={user?.locationImage} alt="@shadcn" />
               </Avatar>
-            ) : (
-              "Image hasnt been uploaded yet"
             )}
           </div>
         </div>
@@ -70,12 +68,10 @@ const Profile = () => {
           <KeyPair point="Onboarding As" value={user?.onBoardingAs} />
           <div className="flex flex-col gap-2">
             <h3 className="font-semibold">Location Image :-</h3>
-            {user?.locationImage ? (
+            {user?.locationImage && (
               <Avatar className="w-36 h-36">
                 <AvatarImage src={user?.locationImage} alt="@shadcn" />
               </Avatar>
-            ) : (
-              "Image hasnt been uploaded yet"
             )}
           </div>
         </div>
