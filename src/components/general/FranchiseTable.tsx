@@ -105,7 +105,10 @@ const FranchiseTable = () => {
   });
 
   return (
-    <section className="bg-[white] flex flex-col gap-y-8 py-16 md:py-20 px-[8vw]">
+    <section
+      id="Franchises"
+      className="bg-[white] flex flex-col gap-y-8 py-16 md:py-20 px-[8vw]"
+    >
       <h1
         className="text-xl lg:text-3xl font-semibold text-median text-center lg:text-left"
         style={{ lineHeight: "1.25" }}

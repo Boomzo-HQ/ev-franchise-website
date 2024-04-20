@@ -66,14 +66,26 @@ const ResetPasswordForm = () => {
 
   const router = useRouter();
 
+  const getHeaders = (token?: string) => {
+    return {
+      Authorization: `Bearer ${token}`,
+    };
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     setIsLoading(true);
     await axios
-      .post(`${BASE_URL}${API_VERSION}/auth/reset-password`, {
-        tempPassword: values.tempPassword,
-        password: values.password,
-      })
+      .patch(
+        `${BASE_URL}${API_VERSION}/auth/reset-password`,
+        {
+          tempPassword: values.tempPassword,
+          password: values.password,
+        },
+        {
+          headers: getHeaders(user?.token),
+        }
+      )
       .then(({ data }) => {
         console.log(data);
         setIsLoading(false);

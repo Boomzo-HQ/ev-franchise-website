@@ -2,15 +2,15 @@
 
 import React from "react";
 import CustomButton from "./CustomButton";
-import { useAuth } from "@/utils/AuthContext";
 import Image from "next/image";
 import Logo from "../../../public/images/EV Logo.png";
 import Link from "next/link";
 
 const Navbar = () => {
-  const { isLoggedIn, firstCheck } = useAuth();
-  console.log(isLoggedIn);
-  console.log(firstCheck);
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    section?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <nav className="bg-[white] w-full px-4 md:px-8 max-w-[1440px] pt-4">
@@ -32,7 +32,12 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {["Home", "Franchises", "Contact"].map((option, idx) => {
             return (
-              <a href="#" key={idx} className="text-median font-normal text-lg">
+              <a
+                onClick={() => scrollToSection(option)}
+                href="#"
+                key={idx}
+                className="text-median font-normal text-lg"
+              >
                 {option}
               </a>
             );

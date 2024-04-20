@@ -6,8 +6,16 @@ import Image from "next/image";
 import Img from "../../../public/images/HeroImg.png";
 
 const Hero = () => {
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    section?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="relative w-full px-[5vw] lg:px-[8vw] pt-[10vh] md:pt-[16vh] pb-[15vh] lg:pb-[16vh]">
+    <div
+      id="Hero"
+      className="relative w-full px-[5vw] lg:px-[8vw] pt-[10vh] md:pt-[16vh] pb-[15vh] lg:pb-[16vh]"
+    >
       {/* grid */}
       <div className="absolute inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#0077b512_1px,transparent_1px),linear-gradient(to_bottom,#0077b512_1px,transparent_1px)] bg-[size:42px_42px] -z-10"></div>
       {/* white fade */}
@@ -19,7 +27,6 @@ const Hero = () => {
           className="text-2xl lg:text-6xl font-bold text-median text-center lg:text-left w-[90%] border-0"
           style={{ lineHeight: "1.25" }}
         >
-          {/* Empower Your Business with EV Charging Solutions */}
           Get an EV Charging Franchise
         </h1>
         <h5 className="text-sm text-center w-[90%] lg:text-left lg:text-lg text-[#0077b599] font-normal md:w-[80%]">
@@ -27,7 +34,10 @@ const Hero = () => {
           Build a sustainable future and profitable venture today.
         </h5>
         <div className="flex flex-col md:flex-row gap-6 items-center">
-          <CustomButton text="Book Franchise" />
+          <CustomButton
+            onClick={() => scrollToSection("Franchises")}
+            text="Book Franchise"
+          />
           <Link href={"/login"}>
             <Button variant={"link"} className="text-[#00a86b]">
               Have an account? Login!!

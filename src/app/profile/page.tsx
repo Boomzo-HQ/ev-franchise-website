@@ -1,6 +1,7 @@
 "use client";
 
 import ContactUs from "@/components/general/ContactUs";
+import Copyright from "@/components/general/Copyright";
 import LoggedInNav from "@/components/general/LoggedInNav";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/cn";
@@ -80,6 +81,7 @@ const Profile = () => {
         </div>
       </div>
       <ContactUs />
+      <Copyright />
     </div>
   );
 };
