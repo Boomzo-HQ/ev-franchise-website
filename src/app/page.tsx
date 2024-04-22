@@ -2,22 +2,24 @@
 
 import ContactUs from "@/components/general/ContactUs";
 import Copyright from "@/components/general/Copyright";
+import FranchiseDropdown from "@/components/general/FranchiseDropdown";
 import FranchiseTable from "@/components/general/FranchiseTable";
 import Hero from "@/components/general/Hero";
 import Navbar from "@/components/general/Navbar";
-import { useAuth } from "@/utils/AuthContext";
 
 export default function Home() {
-  const { firstCheck } = useAuth();
   return (
-    firstCheck && (
-      <>
-        <Navbar />
-        <Hero />
+    <>
+      <Navbar />
+      <Hero />
+      <div className="hidden md:block">
         <FranchiseTable />
-        <ContactUs />
-        <Copyright />
-      </>
-    )
+      </div>
+      <div className="block md:hidden">
+        <FranchiseDropdown />
+      </div>
+      <ContactUs />
+      <Copyright />
+    </>
   );
 }

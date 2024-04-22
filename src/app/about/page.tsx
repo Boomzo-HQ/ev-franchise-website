@@ -116,7 +116,7 @@ const page = () => {
         <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-white to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-[rgba(0,168,107,0.5)] to-transparent"></div>
 
-        <h1 className="text-3xl font-bold text-center mb-10">
+        <h1 className="text-2xl md:text-4xl font-bold text-center mb-10">
           Leading EV Charging Station Providers in India
         </h1>
         <div className="space-y-8">

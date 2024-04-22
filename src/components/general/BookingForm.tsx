@@ -57,7 +57,8 @@ const Icons = {
 };
 
 interface formProps {
-  row: Row<FranchiseType>;
+  // row: Row<FranchiseType>;
+  franchise: string;
 }
 
 const InvestmentRange = z.enum([
@@ -68,7 +69,7 @@ const InvestmentRange = z.enum([
 
 const OnboardingAs = z.enum(["Franchise Distributor", "Charging Station"]); // Example values
 
-const BookingForm = ({ row }: formProps) => {
+const BookingForm = ({ franchise }: formProps) => {
   const formSchema = z.object({
     name: z.string(),
     email: z.string().email(), // Validate string as an email address
@@ -89,7 +90,7 @@ const BookingForm = ({ row }: formProps) => {
       phone: "",
       city: "",
       state: "",
-      franchiseName: row.getValue("franchiseName"),
+      franchiseName: franchise,
       investmentRange: undefined,
       onBoardingAs: undefined,
       message: "",
@@ -108,9 +109,8 @@ const BookingForm = ({ row }: formProps) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const [selectedState, setselectedState] = React.useState("");
-  const [selectedFranchise, setselectedFranchise] = React.useState<string>(
-    row.getValue("franchiseName")
-  );
+  const [selectedFranchise, setselectedFranchise] =
+    React.useState<string>(franchise);
 
   const statesOfIndia = [
     "Andhra Pradesh",
@@ -159,7 +159,7 @@ const BookingForm = ({ row }: formProps) => {
         phone: values.phone,
         city: values.city,
         state: selectedState,
-        franchiseName: values.franchiseName,
+        franchiseName: selectedFranchise,
         investmentRange: investmentRange,
         onBoardingAs: position,
         message: values.message,
@@ -183,15 +183,11 @@ const BookingForm = ({ row }: formProps) => {
       <div className="flex justify-start overflow-y-auto">
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="bg-minor text-white">
-              Book {row.getValue("franchiseName")}
-            </Button>
+            <Button className="bg-minor text-white">Book {franchise}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px] h-[90vh] md:h-[80vh] md:w-[60vw] lg:w-[60vw] lg:max-w-[60vw] border-none bg-[#0077b5] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-white">
-                Book {row.getValue("franchiseName")}
-              </DialogTitle>
+              <DialogTitle className="text-white">Book {franchise}</DialogTitle>
               <DialogDescription className="text-white">
                 Fill in the details and our team will reach out to you shortly!
               </DialogDescription>

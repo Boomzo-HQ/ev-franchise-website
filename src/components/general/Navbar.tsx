@@ -1,62 +1,107 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
 import Logo from "../../../public/images/EV Logo.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/utils/AuthContext";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { BarChart2, Home, Info, Menu, User } from "lucide-react";
 
 const Navbar = () => {
-  // const scrollToSection = (sectionId: string) => {
-  //   const section = document.getElementById(sectionId);
-  //   section?.scrollIntoView({ behavior: "smooth" });
-  // };
+  const [isOpen, setIsOpen] = useState(false);
+  const { firstCheck, isLoggedIn, user } = useAuth();
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
   const router = useRouter();
 
   return (
-    <nav className="bg-[white] w-full px-4 md:px-8 max-w-[1440px] pt-4">
+    <nav className="bg-white w-full px-4 md:px-8 max-w-[1440px] pt-4">
       <div className="flex justify-between items-center">
-        <div>
-          <a href="#" className="flex items-center py-4 px-2">
-            <Image
-              className="m-0 p-0 w-[120px] md:w-[200px]"
-              src={Logo}
-              alt="ev-charging-station"
-            />
-          </a>
+        <div className="flex items-center">
+          <div className="flex items-center py-4 px-2">
+            <Link href="/">
+              <Image
+                className="m-0 p-0 w-[120px] md:w-[200px]"
+                src={Logo}
+                alt="EV Charging Station"
+                width={200}
+                height={60}
+                unoptimized // Add this if you face issues with local images in Next.js Image component
+              />
+            </Link>
+          </div>
+        </div>
+        <button onClick={toggleSidebar} className="md:hidden mr-4">
+          {/* <span className="material-icons">Menu</span> */}
+          <Menu />
+        </button>
+        <div
+          className={`fixed inset-y-0 right-0 bg-black bg-opacity-50 z-50 transition-transform transform ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          } md:hidden w-4/5`}
+        >
+          <div className="bg-white h-full p-4">
+            {[
+              { title: "Home", icon: <Home />, path: "/" },
+              { title: "Income", icon: <BarChart2 />, path: "/income" },
+              { title: "About Us", icon: <Info />, path: "/about" },
+              { title: "Profile", icon: <User />, path: "/profile" },
+            ].map((option, idx) => (
+              <a
+                key={idx}
+                className="flex gap-2 p-4 text-gray-700 hover:bg-gray-200"
+                onClick={() => {
+                  router.push(option.path);
+                  toggleSidebar();
+                }}
+              >
+                {option.icon}
+                <span>{option.title}</span>
+              </a>
+            ))}
+          </div>
         </div>
         <div className="hidden md:flex items-center gap-8">
           {[
-            {
-              title: "Home",
-              path: "/",
-            },
-            {
-              title: "Income",
-              path: "/income",
-            },
-            {
-              title: "About Us",
-              path: "/about",
-            },
-          ].map((option, idx) => {
-            return (
-              <a
-                onClick={() => router.push(option.path)}
-                // href="#"
-                key={idx}
-                className="text-median font-normal text-lg hover:cursor-pointer"
-              >
-                {option.title}
-              </a>
-            );
-          })}
+            { title: "Home", path: "/" },
+            { title: "Income", path: "/income" },
+            { title: "About Us", path: "/about" },
+          ].map((option, idx) => (
+            <div
+              key={idx}
+              className="text-medium font-normal text-lg cursor-pointer hover:underline"
+              onClick={() => router.push(option.path)}
+            >
+              {option.title}
+            </div>
+          ))}
         </div>
-        <Link href={"/login"}>
-          <CustomButton text="Login" />
-        </Link>
+        <div className="hidden md:block">
+          {firstCheck &&
+            (isLoggedIn ? (
+              <Link href="/profile">
+                <div className="flex items-center gap-x-2 border rounded-lg border-gray-300 px-4 py-2 hover:bg-gray-100">
+                  <Avatar className="bg-gray-300">
+                    <AvatarImage
+                      src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                      alt="User Profile"
+                    />
+                  </Avatar>
+                  <h2 className="text-gray-800">{user?.name}</h2>
+                </div>
+              </Link>
+            ) : (
+              <Link href="/login">
+                <CustomButton text="Login" />
+              </Link>
+            ))}
+        </div>
       </div>
     </nav>
   );

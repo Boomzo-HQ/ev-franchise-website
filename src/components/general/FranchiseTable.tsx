@@ -73,7 +73,9 @@ export const columns: ColumnDef<FranchiseType>[] = [
     accessorKey: "",
     header: "Book Now",
     size: 60,
-    cell: ({ row }) => <BookingForm row={row} />,
+    cell: ({ row }) => (
+      <BookingForm franchise={row.getValue("franchiseName")} />
+    ),
   },
 ];
 const FranchiseTable = () => {

@@ -8,9 +8,13 @@ const Income = () => {
     <>
       <Navbar />
       <div className="px-[8vw] py-20 md:p-24">
-        <h1 className="text-4xl font-bold text-center mb-6">About Us</h1>
+        <h1 className="text-2xl md:text-4xl font-bold text-center mb-12">
+          How much income you can make
+        </h1>
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-4">📈 Initial Investment</h2>
+          <h2 className="text-xl text-gray-500 md:text-3xl font-semibold mb-4">
+            📈 Initial Investment
+          </h2>
           <p>
             The cost to establish an electric vehicle charging station varies
             based on location and the number of chargers. Setting up a station
@@ -22,7 +26,7 @@ const Income = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-4">
+          <h2 className="text-xl text-gray-500 md:text-3xl font-semibold mb-4">
             🚗 Potential for Profit
           </h2>
           <p>
@@ -35,7 +39,9 @@ const Income = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-4">📊 Revenue Breakdown</h2>
+          <h2 className="text-xl text-gray-500 md:text-3xl font-semibold mb-4">
+            📊 Revenue Breakdown
+          </h2>
           <p>
             Consider a scenario where 100 EV owners use your station daily for 2
             hours each. Daily revenue could hit Rs. 10,000 (based on Rs. 100 per
@@ -47,7 +53,7 @@ const Income = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-4">
+          <h2 className="text-xl text-gray-500 md:text-3xl font-semibold mb-4">
             🌿 Scalability and Expansion
           </h2>
           <p>
@@ -59,7 +65,7 @@ const Income = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-4">
+          <h2 className="text-xl text-gray-500 md:text-3xl font-semibold mb-4">
             🚀 Five-Year Growth Strategy
           </h2>
           <p>
@@ -87,7 +93,9 @@ const Income = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-4">✅ Conclusion</h2>
+          <h2 className="text-xl text-gray-500 md:text-3xl font-semibold mb-4">
+            ✅ Conclusion
+          </h2>
           <p>
             Investing in electric vehicle charging infrastructure presents a
             lucrative and scalable business opportunity. It not only serves a

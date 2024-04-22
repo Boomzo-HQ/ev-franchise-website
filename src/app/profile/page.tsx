@@ -3,6 +3,7 @@
 import ContactUs from "@/components/general/ContactUs";
 import Copyright from "@/components/general/Copyright";
 import LoggedInNav from "@/components/general/LoggedInNav";
+import Navbar from "@/components/general/Navbar";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/cn";
 import { useAuth } from "@/utils/AuthContext";
@@ -23,7 +24,7 @@ const Profile = () => {
 
   return (
     <div>
-      <LoggedInNav />
+      <Navbar />
       <div className="relative px-[8vw] py-20 md:py-24 flex flex-col gap-y-12">
         <div className="absolute -z-10 inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#0077b512_1px,transparent_1px),linear-gradient(to_bottom,#0077b512_1px,transparent_1px)] bg-[size:42px_42px]"></div>
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
