@@ -4,12 +4,15 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import Img from "../../../public/images/HeroImg.png";
+import { useAuth } from "@/utils/AuthContext";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     section?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const { firstCheck, isLoggedIn } = useAuth();
 
   return (
     <div
@@ -34,15 +37,25 @@ const Hero = () => {
           Build a sustainable future and profitable venture today.
         </h5>
         <div className="flex flex-col md:flex-row gap-6 items-center">
-          <CustomButton
-            onClick={() => scrollToSection("Franchises")}
-            text="Book Franchise"
-          />
-          <Link href={"/login"}>
-            <Button variant={"link"} className="text-[#00a86b]">
-              Have an account? Login!!
-            </Button>
-          </Link>
+          <div className="hidden md:block">
+            <CustomButton
+              onClick={() => scrollToSection("Franchises")}
+              text="Book Franchise"
+            />
+          </div>
+          <div className="block md:hidden">
+            <CustomButton
+              onClick={() => scrollToSection("franchises-mobile")}
+              text="Book Franchise"
+            />
+          </div>
+          {firstCheck && !isLoggedIn && (
+            <Link href={"/login"}>
+              <Button variant={"link"} className="text-[#00a86b]">
+                Have an account? Login!!
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
       <div className="hidden md:block absolute top-[30%] right-0 -z-10">

@@ -42,7 +42,7 @@ const FranchiseDropdown = () => {
 
   return (
     <section
-      id="Franchises"
+      id="franchises-mobile"
       className="bg-[white] flex flex-col gap-y-8 py-16 md:py-20 px-[8vw]"
     >
       <h1

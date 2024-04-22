@@ -10,6 +10,7 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import { jwtDecode } from "jwt-decode";
 
 type AuthContextType = {
   user: USER | null;
@@ -43,9 +44,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const storedUserData = localStorage.getItem(LOCAL_STORAGE_USER);
     if (storedUserData) {
-      setUser(JSON.parse(storedUserData));
-      setIsLoggedIn(true);
-      // router.push("/profile");
+      const userData = JSON.parse(storedUserData);
+      const decodedToken = jwtDecode<{ exp: number }>(userData.token);
+      const isTokenExpired = decodedToken.exp * 1000 < Date.now();
+
+      if (isTokenExpired) {
+        signOut(); // Logout if the token is expired
+      } else {
+        setUser(JSON.parse(storedUserData));
+        setIsLoggedIn(true);
+      }
     }
     setfirstCheck(true);
   }, []);
@@ -61,16 +69,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoggedIn(false);
     localStorage.removeItem(LOCAL_STORAGE_USER);
   };
-
-  // Optionally, handle the session check (e.g., check for an existing auth token)
-  useEffect(() => {
-    const checkUserSession = () => {
-      // Implement session checking logic here
-      // For example, check local storage or cookie for auth token
-      // and set user state based on that
-    };
-    checkUserSession();
-  }, []);
 
   return (
     <AuthContext.Provider
