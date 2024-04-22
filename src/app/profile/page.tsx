@@ -23,12 +23,12 @@ const Profile = () => {
   const { user } = useAuth();
 
   return (
-    <div>
+    <div className="max-w-[1450px] mx-auto w-full">
       <Navbar />
       <div className="relative px-[8vw] py-20 md:py-24 flex flex-col gap-y-12">
         <div className="absolute -z-10 inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#0077b512_1px,transparent_1px),linear-gradient(to_bottom,#0077b512_1px,transparent_1px)] bg-[size:42px_42px]"></div>
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[rgba(0,168,107,0.5)] to-transparent"></div>
+        {/* <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[rgba(0,168,107,0.5)] to-transparent"></div> */}
 
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
           <h3 className="text-lg md:text-3xl">Your Booking Details:-</h3>

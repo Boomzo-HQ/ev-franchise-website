@@ -20,7 +20,7 @@ const Booked = () => {
   const { user } = useAuth();
 
   return (
-    <div>
+    <div className="max-w-[1450px] mx-auto w-full">
       <Navbar />
       <div className="flex flex-col items-center justify-center py-20 md:py-24 space-y-12 bg-white rounded-lg">
         <p className="text-lg text-gray-700">

@@ -110,7 +110,7 @@ const franchises = [
 
 const page = () => {
   return (
-    <>
+    <div className="max-w-[1450px] mx-auto w-full">
       <Navbar />
       <div className="relative px-[8vw] py-20 md:py-24-24">
         <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-white to-transparent"></div>
@@ -153,7 +153,7 @@ const page = () => {
       </div>
       <ContactUs />
       <Copyright />
-    </>
+    </div>
   );
 };
 

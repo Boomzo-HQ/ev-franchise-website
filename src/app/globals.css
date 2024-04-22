@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    /* font-family: "Montserrat", sans-serif; */
+    font-family: "Jersey 25", sans-serif;
+    /* font-style: italic; */
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -31,6 +37,7 @@
   }
 
   .dark {
+    font-family: "Montserrat", sans-serif;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;

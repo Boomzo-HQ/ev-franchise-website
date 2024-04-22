@@ -5,7 +5,7 @@ import React from "react";
 
 const Income = () => {
   return (
-    <>
+    <div className="max-w-[1450px] mx-auto w-full">
       <Navbar />
       <div className="px-[8vw] py-20 md:p-24">
         <h1 className="text-2xl md:text-4xl font-bold text-center mb-12">
@@ -108,7 +108,7 @@ const Income = () => {
       </div>
       <ContactUs />
       <Copyright />
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,11 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Jersey 25", "sans-serif"], // Ensuring Montserrat is the default sans-serif font
+      },
+    },
   },
   plugins: [],
 }

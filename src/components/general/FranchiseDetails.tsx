@@ -1,8 +1,7 @@
-"use client";
-
-import * as React from "react";
+import { FRANCHISE_DATA, FranchiseType } from "@/types/frnachiseData";
+import { ColumnDef, useReactTable } from "@tanstack/react-table";
+import React from "react";
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -11,7 +10,6 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
 } from "@tanstack/react-table";
 import {
   Table,
@@ -21,8 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { FRANCHISE_DATA, FranchiseType } from "@/types/frnachiseData";
-import BookingForm from "./BookingForm";
 
 export const columns: ColumnDef<FranchiseType>[] = [
   {
@@ -31,14 +27,6 @@ export const columns: ColumnDef<FranchiseType>[] = [
     size: 200,
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("franchiseName")}</div>
-    ),
-  },
-  {
-    accessorKey: "franchiseSince",
-    header: "Franchise Since",
-    size: 200,
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("franchiseSince")}</div>
     ),
   },
   {
@@ -64,16 +52,9 @@ export const columns: ColumnDef<FranchiseType>[] = [
       <div className="capitalize">{row.getValue("spaceRequirement")}</div>
     ),
   },
-  {
-    accessorKey: "",
-    header: "Book Now",
-    size: 60,
-    cell: ({ row }) => (
-      <BookingForm franchise={row.getValue("franchiseName")} />
-    ),
-  },
 ];
-const FranchiseTable = () => {
+
+const FranchiseDetails = () => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -102,16 +83,12 @@ const FranchiseTable = () => {
   });
 
   return (
-    <section
-      id="Franchises"
-      className="bg-[white] flex flex-col gap-y-8 py-16 md:py-20 px-[8vw]"
-    >
+    <section className="bg-[white] flex flex-col gap-y-8 py-16 md:py-20 px-[8vw]">
       <h1
         className="text-xl lg:text-3xl font-semibold text-median text-center lg:text-left"
         style={{ lineHeight: "1.25" }}
       >
-        List of Top 10 EV Charging Station Franchise Cost and Price in India
-        2024
+        Top EV Charging Station Franchise Details
       </h1>
       <div className="w-full">
         <div className="rounded-md border-none">
@@ -174,4 +151,4 @@ const FranchiseTable = () => {
   );
 };
 
-export default FranchiseTable;
+export default FranchiseDetails;
