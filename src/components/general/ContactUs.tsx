@@ -54,7 +54,7 @@ const ContactUs = () => {
         <h2 className="text-2xl md:text-4xl text-median font-bold">
           Get In Touch
         </h2>
-        <div className="flex flex-col gap-y-2 text-lg font-normal text-median tracking-wide leading-8">
+        <div className="flex flex-col gap-y-3 text-base md:text-lg font-normal text-median tracking-wide leading-6">
           <span>1670, Rai Industrial Estate, Sector 38, Sonipat, Haryana</span>
           <span>info@evchargingstationindia.com</span>
           <span>support@evchargingstationindia.com</span>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,12 +29,13 @@ const FranchiseDropdown = () => {
     React.useState<FranchiseType>(FRANCHISE_DATA[0]);
 
   const dropdownHandler = (value: any) => {
-    console.log(value);
+    // console.log(value);
     setPosition(value);
     const franchise: FranchiseType | undefined = FRANCHISE_DATA.find(
       (franchise) => franchise.franchiseName == value
     );
     if (franchise) {
+      // console.log("check");
       setselectedFranchise(franchise);
     }
   };

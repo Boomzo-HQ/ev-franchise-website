@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
 import Logo from "../../../public/images/EV Logo.png";
@@ -19,6 +19,28 @@ const Navbar = () => {
   };
 
   const router = useRouter();
+
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Check if sidebarRef is current and if the click was outside the sidebar
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add event listener to the document
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="bg-white w-full px-4 md:px-8 max-w-[1440px] pt-4">
@@ -42,17 +64,25 @@ const Navbar = () => {
           <Menu />
         </button>
         <div
+          ref={sidebarRef}
           className={`fixed inset-y-0 right-0 bg-black bg-opacity-50 z-50 transition-transform transform ${
             isOpen ? "translate-x-0" : "translate-x-full"
           } md:hidden w-4/5`}
         >
-          <div className="bg-white h-full p-4">
-            {[
-              { title: "Home", icon: <Home />, path: "/" },
-              { title: "Income", icon: <BarChart2 />, path: "/income" },
-              { title: "About Us", icon: <Info />, path: "/about" },
-              { title: "Profile", icon: <User />, path: "/profile" },
-            ].map((option, idx) => (
+          <div className="bg-gray-50 h-full p-4">
+            {(isLoggedIn
+              ? [
+                  { title: "Home", icon: <Home />, path: "/" },
+                  { title: "Income", icon: <BarChart2 />, path: "/income" },
+                  { title: "About Us", icon: <Info />, path: "/about" },
+                  { title: "Profile", icon: <User />, path: "/profile" },
+                ]
+              : [
+                  { title: "Home", icon: <Home />, path: "/" },
+                  { title: "Income", icon: <BarChart2 />, path: "/income" },
+                  { title: "About Us", icon: <Info />, path: "/about" },
+                ]
+            ).map((option, idx) => (
               <a
                 key={idx}
                 className="flex gap-2 p-4 text-gray-700 hover:bg-gray-200"

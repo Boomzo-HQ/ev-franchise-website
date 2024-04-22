@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -70,6 +71,8 @@ const InvestmentRange = z.enum([
 const OnboardingAs = z.enum(["Franchise Distributor", "Charging Station"]); // Example values
 
 const BookingForm = ({ franchise }: formProps) => {
+  console.log(franchise);
+
   const formSchema = z.object({
     name: z.string(),
     email: z.string().email(), // Validate string as an email address
@@ -111,6 +114,11 @@ const BookingForm = ({ franchise }: formProps) => {
   const [selectedState, setselectedState] = React.useState("");
   const [selectedFranchise, setselectedFranchise] =
     React.useState<string>(franchise);
+
+  useEffect(() => {
+    // console.log(selectedFranchise);
+    setselectedFranchise(franchise);
+  }, [franchise]);
 
   const statesOfIndia = [
     "Andhra Pradesh",
