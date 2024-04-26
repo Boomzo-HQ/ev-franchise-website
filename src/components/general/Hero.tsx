@@ -40,13 +40,13 @@ const Hero = () => {
           <div className="hidden md:block">
             <CustomButton
               onClick={() => scrollToSection("Franchises")}
-              text="Book Franchise"
+              text="Apply Now"
             />
           </div>
           <div className="block md:hidden">
             <CustomButton
               onClick={() => scrollToSection("franchises-mobile")}
-              text="Book Franchise"
+              text="Apply Now"
             />
           </div>
           {firstCheck && !isLoggedIn && (

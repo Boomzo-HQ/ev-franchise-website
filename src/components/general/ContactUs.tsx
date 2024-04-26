@@ -10,6 +10,7 @@ const ContactUs = () => {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     message: "",
   });
 
@@ -26,6 +27,7 @@ const ContactUs = () => {
       .post(`${BASE_URL}${API_VERSION}/contact`, {
         name: formData.firstName + " " + formData.lastName,
         email: formData.email,
+        phone: formData.phone,
         message: formData.message,
       })
       .then(({ data }) => {
@@ -93,6 +95,15 @@ const ContactUs = () => {
             required
             onChange={handleChange}
             value={formData.email}
+            className="flex-1 px-2 py-1 bg-transparent h-12 border-b-[1px] border-[#17173f] focus:outline-none"
+          />
+          <input
+            type="string"
+            name="phone"
+            placeholder="Phone Number *"
+            required
+            onChange={handleChange}
+            value={formData.phone}
             className="flex-1 px-2 py-1 bg-transparent h-12 border-b-[1px] border-[#17173f] focus:outline-none"
           />
           <textarea
