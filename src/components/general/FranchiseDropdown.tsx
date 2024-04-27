@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FRANCHISE_DATA, FranchiseType } from "@/types/frnachiseData";
 import BookingForm from "./BookingForm";
+import { ChevronDown } from "lucide-react";
 
 const KeyPair = ({ point, value }: { point?: string; value?: any }) => {
   return (
@@ -53,7 +54,10 @@ const FranchiseDropdown = () => {
       </h1>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline">{position}</Button>
+          <Button className="flex flex-row items-center justify-between" variant="outline">
+            <span>{position}</span>
+            <ChevronDown />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-[80vw] bg-white h-[40vh] overflow-y-auto">
           <DropdownMenuRadioGroup

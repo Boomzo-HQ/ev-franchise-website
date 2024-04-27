@@ -18,7 +18,6 @@ import { API_VERSION, BASE_URL } from "@/utils/APIRoutes";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { toast } from "@/components/ui/use-toast";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 

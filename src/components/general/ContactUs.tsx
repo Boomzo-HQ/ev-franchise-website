@@ -4,6 +4,28 @@ import CustomButton from "./CustomButton";
 import axios from "axios";
 import { API_VERSION, BASE_URL } from "@/utils/APIRoutes";
 import { toast } from "../ui/use-toast";
+import { Button } from "../ui/button";
+
+type IconProps = React.HTMLAttributes<SVGElement>;
+
+const Icons = {
+  spinner: (props: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </svg>
+  ),
+};
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -20,9 +42,12 @@ const ContactUs = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(formData);
+    setIsLoading(true);
     await axios
       .post(`${BASE_URL}${API_VERSION}/contact`, {
         name: formData.firstName + " " + formData.lastName,
@@ -31,11 +56,20 @@ const ContactUs = () => {
         message: formData.message,
       })
       .then(({ data }) => {
+        setIsLoading(false);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
         toast({
           title: "We'll reach out to you soon",
         });
       })
       .catch((err) => {
+        setIsLoading(false);
         toast({
           title: "Uh oh! Something went wrong.",
         });
@@ -115,7 +149,15 @@ const ContactUs = () => {
             rows={3}
           ></textarea>
           <div className="flex justify-center md:justify-start">
-            <CustomButton text="Submit" />
+            <Button
+              disabled={isLoading}
+              className="bg-minor bg-minor:hover border-[1px] border-[#00a86b] text-white w-fit h-fit px-6 py-4 md:px-8 md:py-4 rounded-3xl text-xs md:text-base"
+            >
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Submit
+            </Button>
           </div>
         </form>
       </div>
