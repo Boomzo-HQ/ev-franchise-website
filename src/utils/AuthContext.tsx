@@ -62,12 +62,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(user);
     setIsLoggedIn(true);
     localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(user));
+    router.push("/profile");
   };
 
   const signOut = () => {
+    console.log("checking");
+
     setUser(null);
     setIsLoggedIn(false);
     localStorage.removeItem(LOCAL_STORAGE_USER);
+    router.push("/");
   };
 
   return (

@@ -18,6 +18,7 @@ import { API_VERSION, BASE_URL } from "@/utils/APIRoutes";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -122,6 +123,15 @@ const UserAuthForm = () => {
           </div>
         </form>
       </Form>
+      <p className="w-full text-center text-sm text-muted-foreground">
+        Can't remember your password??{" "}
+        <Link
+          href="/forget-password"
+          className="underline underline-offset-4 hover:text-primary"
+        >
+          Forgot Password
+        </Link>
+      </p>
     </div>
   );
 };

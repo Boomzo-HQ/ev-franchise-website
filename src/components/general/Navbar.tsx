@@ -8,11 +8,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/utils/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { BarChart2, Home, Info, Menu, User } from "lucide-react";
+import { BarChart2, Home, Info, LogOut, Menu, User } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { firstCheck, isLoggedIn, user } = useAuth();
+  const { firstCheck, isLoggedIn, user, signOut } = useAuth();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -65,7 +65,7 @@ const Navbar = () => {
         </button>
         <div
           ref={sidebarRef}
-          className={`fixed inset-y-0 right-0 bg-black bg-opacity-50 z-50 transition-transform transform ${
+          className={`flex flex-col justify-between fixed inset-y-0 right-0 bg-black bg-opacity-50 z-50 transition-transform transform ${
             isOpen ? "translate-x-0" : "translate-x-full"
           } md:hidden w-4/5`}
         >
@@ -96,6 +96,15 @@ const Navbar = () => {
               </a>
             ))}
           </div>
+          {isLoggedIn && (
+            <div
+              className="bg-gray-50 z-50 h-fit flex gap-2 p-8 text-gray-700 hover:bg-gray-200"
+              onClick={signOut}
+            >
+              <LogOut />
+              <span>Logout</span>
+            </div>
+          )}
         </div>
         <div className="hidden md:flex items-center gap-8">
           {[
