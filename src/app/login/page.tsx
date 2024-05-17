@@ -124,7 +124,7 @@ const UserAuthForm = () => {
         </form>
       </Form>
       <p className="w-full text-center text-sm text-muted-foreground">
-        Can't remember your password??{" "}
+        Can not remember your password??{" "}
         <Link
           href="/forget-password"
           className="underline underline-offset-4 hover:text-primary"
