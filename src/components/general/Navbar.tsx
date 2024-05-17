@@ -99,7 +99,10 @@ const Navbar = () => {
           {isLoggedIn && (
             <div
               className="bg-gray-50 z-50 h-fit flex gap-2 p-8 text-gray-700 hover:bg-gray-200"
-              onClick={signOut}
+              onClick={() => {
+                signOut();
+                toggleSidebar();
+              }}
             >
               <LogOut />
               <span>Logout</span>
