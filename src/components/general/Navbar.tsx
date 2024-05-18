@@ -7,7 +7,7 @@ import Logo from "../../../public/images/EV Logo.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/utils/AuthContext";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarImage } from "../ui/avatar";
 import { BarChart2, Home, Info, LogOut, Menu, User } from "lucide-react";
 
 const Navbar = () => {
@@ -24,7 +24,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Check if sidebarRef is current and if the click was outside the sidebar
       if (
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target as Node)
@@ -98,7 +97,7 @@ const Navbar = () => {
           </div>
           {isLoggedIn && (
             <div
-              className="bg-gray-50 z-50 h-fit flex gap-2 p-8 text-gray-700 hover:bg-gray-200"
+              className="bg-red-600 z-50 h-fit flex gap-2 p-8 text-white"
               onClick={() => {
                 signOut();
                 toggleSidebar();
